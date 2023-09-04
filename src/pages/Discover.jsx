@@ -1,7 +1,13 @@
 import { Error, Loader, SongCard } from '../components';
 import { genres } from '../assets/constants';
+import { useGetChartQuery } from '../redux/services/deezer';
 
 const Discover = () => {
+  const { data, isFetching, error } = useGetChartQuery();
+
+  if (isFetching) return <Loader title="Loading songs..." />;
+
+  if (error) return <Error title="Oops! Something went wrong." />;
   const genreTitle = 'Pop';
 
   return (
@@ -13,13 +19,13 @@ const Discover = () => {
           value=""
           className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
         >
-          {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
+          {genres.map((genre) => <option key={genre.title} value={genre.value}>{genre.title}</option>)}
         </select>
       </div>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((song, idx) => (
+        {data?.tracks?.data?.map((song, idx) => (
           <SongCard
-            key={song.key}
+            key={song.id}
             song={song}
             i={idx}
           />
