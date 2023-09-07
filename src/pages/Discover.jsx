@@ -1,9 +1,13 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Error, Loader, SongCard } from '../components';
 import { genres } from '../assets/constants';
 import { useGetChartQuery } from '../redux/services/deezer';
 
 const Discover = () => {
-  const { data, isFetching, error } = useGetChartQuery();
+  const dispatch = useDispatch();
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { data: chart, isFetching, error } = useGetChartQuery();
+  const data = chart?.tracks?.data || [];
 
   if (isFetching) return <Loader title="Loading songs..." />;
 
@@ -23,10 +27,13 @@ const Discover = () => {
         </select>
       </div>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.tracks?.data?.map((song, idx) => (
+        {data.map((song, idx) => (
           <SongCard
             key={song.id}
             song={song}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            data={data}
             i={idx}
           />
         ))}
