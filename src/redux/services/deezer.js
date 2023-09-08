@@ -9,7 +9,7 @@ export const deezerApi = createApi({
   endpoints: (builder) => ({
     getChart: builder.query({
       query: () => ({
-        url: '/chart/132?output=json', // ID=132 Pop
+        url: '/chart/132?output=json&limit=20', // ID=132 Pop
       }),
     }),
   }),
