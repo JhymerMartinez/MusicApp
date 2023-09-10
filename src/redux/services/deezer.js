@@ -7,14 +7,16 @@ export const deezerApi = createApi({
     baseUrl: '/api',
   }),
   endpoints: (builder) => ({
-    getChart: builder.query({
+    getTopChart: builder.query({
       query: () => ({
         url: '/chart/132/tracks?output=json&limit=20', // ID=132 Pop
+        method: 'GET',
       }),
+      transformResponse: (res) => res.data || [],
     }),
   }),
 });
 
 export const {
-  useGetChartQuery,
+  useGetTopChartQuery,
 } = deezerApi;
