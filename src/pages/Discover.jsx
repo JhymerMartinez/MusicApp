@@ -7,7 +7,7 @@ const Discover = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data: chart, isFetching, error } = useGetChartQuery();
-  const data = chart?.tracks?.data || [];
+  const data = chart?.data || [];
 
   if (isFetching) return <Loader title="Loading songs..." />;
 
