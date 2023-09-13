@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
 import { setActiveSong, playPause } from '../redux/features/playerSlice';
@@ -19,29 +19,6 @@ const SongDetails = () => {
   if (isFetchingSongData) return <Loader title="Loading song..." />;
   if (error) return <Error title="Oops! Something went wrong." />;
 
-  const details = [
-    {
-      title: 'Title',
-      value: songData?.title,
-    },
-    {
-      title: 'Artist',
-      value: songData?.artist.name,
-    },
-    {
-      title: 'Album',
-      value: songData?.album.title,
-    },
-    {
-      title: 'Duration',
-      value: convertToMins(songData?.duration || 0),
-    },
-    {
-      title: 'Deezer Link',
-      value: <a href={songData?.link}>{songData?.link}</a>,
-    },
-  ];
-
   return (
     <div className="flex flex-col">
       <div className="mb-10">
@@ -49,16 +26,45 @@ const SongDetails = () => {
           Song Details
         </h2>
       </div>
-      <div className="">
-        <div className="w-full flex items-center justify-center">
-          <img src={songData?.album?.cover_medium} alt="song_img" className="rounded-lg" />
+      <div className="w-full bg-gradient-to-l from-transparent to-black p-3">
+        <div className="w-full flex items-left justify-left sm:h-48 h-28 mb-3">
+          <img
+            src={songData?.album?.cover_medium}
+            alt="song_img"
+            className="rounded-full object-cover border-2 shadow-xl shadow-black"
+          />
         </div>
-        {details.map(({ title, value }) => (
-          <div className="mt-3">
-            <h3 className="text-white text-xl font-bold">{title}</h3>
-            <div className="text-white">{value}</div>
-          </div>
-        ))}
+        <div className="mt-3">
+          <p className="text-white text-lg font-bold">Title</p>
+          <p className="text-gray-400">{songData?.title}</p>
+        </div>
+        <div className="mt-3">
+          <p className="text-white text-lg font-bold">Artist</p>
+          <Link to={`/artists/${songData?.artist?.id}`}>
+            <p className="text-gray-400 hover:text-blue-400">
+              {songData?.artist.name}
+            </p>
+          </Link>
+        </div>
+        <div className="mt-3">
+          <p className="text-white text-lg font-bold">Album</p>
+          <p className="text-gray-400">{songData?.album.title}</p>
+        </div>
+        <div className="mt-3">
+          <p className="text-white text-lg font-bold">Duration</p>
+          <p className="text-gray-400">{convertToMins(songData?.duration || 0)}</p>
+        </div>
+        <div className="mt-3">
+          <p className="text-white text-lg font-bold">Deezer Link</p>
+          <a
+            href={songData?.link}
+            className="text-gray-400 hover:text-blue-400"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {songData?.link}
+          </a>
+        </div>
       </div>
     </div>
   );
