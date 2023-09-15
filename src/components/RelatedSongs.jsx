@@ -1,9 +1,9 @@
 import SongBar from './SongBar';
 
-const RelatedSongs = ({ data, isPlaying, activeSong, handlePause, handlePlay }) => (
+const RelatedSongs = ({ data, isPlaying, activeSong, handlePause, handlePlay, title }) => (
   <div className="flex flex-col">
     <h1 className="font-bold text-3xl text-white">
-      {`More by ${data?.[0]?.artist?.name}`}
+      {title || 'Top Songs'}
     </h1>
     <div className="mt-6 w-full flex flex-col">
       {data?.map((song, idx) => (
