@@ -34,6 +34,19 @@ export const deezerApi = createApi({
       }),
       transformResponse: (res) => res.data || [],
     }),
+    getArtistDetails: builder.query({
+      query: ({ artistId }) => ({
+        url: `/artist/${artistId}?output=json`,
+        method: 'GET',
+      }),
+    }),
+    getRelatedArtistsByArtist: builder.query({
+      query: ({ artistId }) => ({
+        url: `/artist/${artistId}/related?output=json&limit=10`,
+        method: 'GET',
+      }),
+      transformResponse: (res) => res.data || [],
+    }),
   }),
 });
 
@@ -42,4 +55,6 @@ export const {
   useGetSongDetailsQuery,
   useGetRelatedArtistsQuery,
   useGetTopSongsByArtistQuery,
+  useGetArtistDetailsQuery,
+  useGetRelatedArtistsByArtistQuery,
 } = deezerApi;
