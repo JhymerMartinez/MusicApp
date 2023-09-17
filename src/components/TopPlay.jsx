@@ -6,7 +6,7 @@ import { FreeMode } from 'swiper';
 
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import { useGetTopChartQuery } from '../redux/services/deezer';
+import { useGetTopSongsByGenreQuery } from '../redux/services/deezer';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -41,7 +41,9 @@ const TopChartCard = ({ song, idx, isPlaying, activeSong, handlePauseClick, hand
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartQuery();
+  const { data } = useGetTopSongsByGenreQuery({
+    genreId: 132, // POP
+  });
   const divRef = useRef(null);
   const topPlays = data?.slice(0, 5);
 

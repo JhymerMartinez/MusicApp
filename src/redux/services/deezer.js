@@ -7,9 +7,16 @@ export const deezerApi = createApi({
     baseUrl: '/api',
   }),
   endpoints: (builder) => ({
-    getTopChart: builder.query({
-      query: () => ({
-        url: '/chart/132/tracks?output=json&limit=20', // ID=132 Pop
+    getTopSongsByGenre: builder.query({
+      query: ({ genreId = 0 } = {}) => ({ // default ID=0 All
+        url: `/chart/${genreId}/tracks?output=json&limit=20`,
+        method: 'GET',
+      }),
+      transformResponse: (res) => res.data || [],
+    }),
+    getTopArtistsByGenre: builder.query({
+      query: ({ genreId = 0 } = {}) => ({ // default ID=132 Pop
+        url: `/chart/${genreId}/artists?output=json&limit=20`,
         method: 'GET',
       }),
       transformResponse: (res) => res.data || [],
@@ -51,7 +58,8 @@ export const deezerApi = createApi({
 });
 
 export const {
-  useGetTopChartQuery,
+  useGetTopSongsByGenreQuery,
+  useGetTopArtistsByGenreQuery,
   useGetSongDetailsQuery,
   useGetRelatedArtistsQuery,
   useGetTopSongsByArtistQuery,

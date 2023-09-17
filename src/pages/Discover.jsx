@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Error, Loader, SongCard } from '../components';
 import { genres } from '../assets/constants';
-import { useGetTopChartQuery } from '../redux/services/deezer';
+import { useGetTopSongsByGenreQuery } from '../redux/services/deezer';
 
 const Discover = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartQuery();
+  const { data, isFetching, error } = useGetTopSongsByGenreQuery({
+    genreId: 132, // POP
+  });
 
   if (isFetching) return <Loader title="Loading songs..." />;
 
