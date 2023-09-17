@@ -20,10 +20,10 @@ const TopChartCard = ({ song, idx, isPlaying, activeSong, handlePauseClick, hand
       <img src={song?.album?.cover_medium} alt={song?.title} className="w-20 h-20 rounded-lg" />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song?.id}`}>
-          <p className="text-xl font-bold text-white">{song?.title}</p>
+          <p className="text-xl font-bold text-white hover:text-cyan-400">{song?.title}</p>
         </Link>
         <Link to={`/artists/${song?.artist?.id}`}>
-          <p className="text-base text-gray-300 mt-1">{song?.artist?.name}</p>
+          <p className="text-base text-gray-300 mt-1 hover:text-cyan-400">{song?.artist?.name}</p>
         </Link>
       </div>
     </div>
@@ -63,7 +63,7 @@ const TopPlay = () => {
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Songs</h2>
-          <Link className="text-gray-300 text-base cursor-pointer" to="/top-songs">See more</Link>
+          <Link className="text-gray-300 text-base cursor-pointer hover:text-cyan-400" to="/top-songs">See more</Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
           {topPlays?.map((song, idx) => (
@@ -82,7 +82,7 @@ const TopPlay = () => {
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Artists</h2>
-          <Link className="text-gray-300 text-base cursor-pointer" to="/top-artists">See more</Link>
+          <Link className="text-gray-300 text-base cursor-pointer hover:text-cyan-400" to="/top-artists">See more</Link>
         </div>
 
         <Swiper
