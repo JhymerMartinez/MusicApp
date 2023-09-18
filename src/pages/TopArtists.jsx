@@ -1,3 +1,27 @@
-const TopArtists = () => <div>TopArtists</div>;
+import { useGetTopArtistsByGenreQuery } from '../redux/services/deezer';
+import { Error, Loader, ArtistCard } from '../components';
+
+const TopArtists = () => {
+  const { data, isFetching, error } = useGetTopArtistsByGenreQuery(); // All genres
+  if (isFetching) return <Loader title="Loading artists..." />;
+  if (error) return <Error title="Oops! Something went wrong." />;
+
+  return (
+    <div className="flex flex-col">
+      <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">
+        Top Artists
+      </h2>
+      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
+        {data.map((artist) => (
+          <ArtistCard
+            key={artist.id}
+            artist={artist}
+          />
+        ))}
+      </div>
+
+    </div>
+  );
+};
 
 export default TopArtists;
