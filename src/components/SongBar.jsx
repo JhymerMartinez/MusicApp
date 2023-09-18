@@ -20,7 +20,7 @@ const SongBar = ({ song, i, isPlaying, activeSong, handlePause, handlePlay }) =>
           </p>
         </Link>
 
-        <p className="text-base text-gray-300 mt-1 hover:text-cyan-400">
+        <p className="text-base text-gray-300 mt-1">
           {song?.album?.title}
         </p>
       </div>
