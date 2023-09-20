@@ -8,49 +8,80 @@ export const deezerApi = createApi({
   }),
   endpoints: (builder) => ({
     getTopSongsByGenre: builder.query({
-      query: ({ genreId = 0 } = {}) => ({ // default ID=0 All
-        url: `/chart/${genreId}/tracks?output=json&limit=20`,
+      query: ({ genreId = 0, ...restParams } = {}) => ({ // default ID=0 All
+        url: `/chart/${genreId}/tracks`,
         method: 'GET',
+        params: {
+          limit: 20,
+          output: 'json',
+          ...restParams,
+        },
       }),
       transformResponse: (res) => res.data || [],
     }),
     getTopArtistsByGenre: builder.query({
-      query: ({ genreId = 0 } = {}) => ({ // default ID=132 Pop
-        url: `/chart/${genreId}/artists?output=json&limit=20`,
+      query: ({ genreId = 0, ...restParams } = {}) => ({ // default ID=132 Pop
+        url: `/chart/${genreId}/artists`,
         method: 'GET',
+        params: {
+          limit: 20,
+          output: 'json',
+          ...restParams,
+        },
       }),
       transformResponse: (res) => res.data || [],
     }),
     getSongDetails: builder.query({
       query: ({ songId }) => ({
-        url: `/track/${songId}?output=json`,
+        url: `/track/${songId}`,
         method: 'GET',
+        params: {
+          output: 'json',
+        },
       }),
     }),
     getRelatedArtists: builder.query({
-      query: ({ artistId }) => ({
-        url: `/artist/${artistId}/related?output=json&limit=10`,
+      query: ({ artistId, ...restParams }) => ({
+        url: `/artist/${artistId}/related`,
         method: 'GET',
+        params: {
+          limit: 10,
+          output: 'json',
+          ...restParams,
+        },
       }),
       transformResponse: (res) => res.data || [],
     }),
     getTopSongsByArtist: builder.query({
-      query: ({ artistId }) => ({
-        url: `/artist/${artistId}/top?output=json&limit=10`,
+      query: ({ artistId, ...restParams }) => ({
+        url: `/artist/${artistId}/top`,
         method: 'GET',
+        params: {
+          limit: 10,
+          output: 'json',
+          ...restParams,
+        },
       }),
       transformResponse: (res) => res.data || [],
     }),
     getArtistDetails: builder.query({
       query: ({ artistId }) => ({
-        url: `/artist/${artistId}?output=json`,
+        url: `/artist/${artistId}`,
         method: 'GET',
+        params: {
+          output: 'json',
+        },
       }),
     }),
     getRelatedArtistsByArtist: builder.query({
-      query: ({ artistId }) => ({
-        url: `/artist/${artistId}/related?output=json&limit=10`,
+      query: ({ artistId, ...restParams }) => ({
+        url: `/artist/${artistId}/related`,
         method: 'GET',
+        params: {
+          limit: 10,
+          output: 'json',
+          ...restParams,
+        },
       }),
       transformResponse: (res) => res.data || [],
     }),
