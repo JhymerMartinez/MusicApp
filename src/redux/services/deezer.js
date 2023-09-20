@@ -4,7 +4,7 @@ export const deezerApi = createApi({
   reducerPath: 'deezerApi',
   baseQuery: fetchBaseQuery({
     // Proxy Server
-    baseUrl: '/api',
+    baseUrl: `${import.meta.env.VITE_API_BASE_URL}/api`,
   }),
   endpoints: (builder) => ({
     getTopSongsByGenre: builder.query({
