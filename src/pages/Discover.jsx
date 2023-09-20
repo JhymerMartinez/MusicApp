@@ -8,7 +8,7 @@ const Discover = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetTopSongsByGenreQuery({
-    genreId: genreListId,
+    genreId: genreListId || genres[0].value,
   });
 
   if (isFetching) return <Loader title="Loading songs..." />;
