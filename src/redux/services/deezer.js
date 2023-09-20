@@ -85,6 +85,19 @@ export const deezerApi = createApi({
       }),
       transformResponse: (res) => res.data || [],
     }),
+    getSongsBySearch: builder.query({
+      query: ({ searchTerm, ...restParams }) => ({
+        url: '/search',
+        method: 'GET',
+        params: {
+          q: searchTerm,
+          limit: 20,
+          output: 'json',
+          ...restParams,
+        },
+      }),
+      transformResponse: (res) => res.data || [],
+    }),
   }),
 });
 
@@ -96,4 +109,5 @@ export const {
   useGetTopSongsByArtistQuery,
   useGetArtistDetailsQuery,
   useGetRelatedArtistsByArtistQuery,
+  useGetSongsBySearchQuery,
 } = deezerApi;
