@@ -32,11 +32,11 @@ const ArtistDetails = () => {
   return (
     <div className="flex flex-col">
       <div className="w-full p-3 mb-5">
-        <div className="w-full flex items-left justify-left sm:h-48 h-28 mb-3 bg-gradient-to-l from-transparent to-black py-4">
+        <div className="w-full flex items-left justify-left sm:h-48 h-28 bg-gradient-to-l from-transparent to-black rounded-l-full">
           <img
             src={artistData?.picture_medium}
             alt="artist_img"
-            className="rounded-full object-cover border-2 shadow-xl shadow-black"
+            className="rounded-full border-2 shadow-xl shadow-black"
           />
           <div className="flex items-left justify-center flex-col ml-5">
             <h3 className="text-white text-2xl font-bold">{artistData?.name}</h3>

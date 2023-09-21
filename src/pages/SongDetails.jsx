@@ -49,14 +49,14 @@ const SongDetails = () => {
             <h3 className="text-white text-2xl font-bold">{songData?.title}</h3>
             <p className="text-white text-xl mb-2">{songData?.album?.title}</p>
             <Link to={`/artists/${songData?.artist?.id}`}>
-              <p className="text-gray-400 hover:text-cyan-400 text-lg mb-1">
+              <p className="text-gray-400 hover:text-emerald-200 text-lg mb-1">
                 {songData?.artist?.name}
               </p>
             </Link>
             <p className="text-gray-400">{convertToMins(songData?.duration || 0)}</p>
             <a
               href={songData?.link}
-              className="text-gray-400 hover:text-cyan-400"
+              className="text-gray-400 hover:text-emerald-200"
               target="_blank"
               rel="noreferrer"
             >
