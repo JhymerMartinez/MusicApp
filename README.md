@@ -4,6 +4,11 @@ Develop an elegant React.js Music Application.
 
 Thank you [Javascript Mastery](https://www.youtube.com/@javascriptmastery) for the guide 💪
 
+# Demo
+
+You can see the demo of this project in the following link:
+[https://jhy-music-app.netlify.app](https://jhy-music-app.netlify.app/)
+
 ## System Requirements
 
 To get started with development, you need to install few tools
